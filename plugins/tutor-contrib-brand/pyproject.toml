@@ -1,0 +1,27 @@
+[project]
+name = "tutor-contrib-brand"
+version = "0.1.0"
+description = "Orchestrates Open edX branding from a versioned brand repository."
+authors = [
+  { name = "Open edX Community" },
+]
+license = { text = "AGPL-3.0-only" }
+readme = { file = "README.rst", content-type = "text/x-rst" }
+requires-python = ">=3.9"
+dependencies = [
+  "tutor>=19.0.0,<22.0.0",
+  "tutor-mfe>=20.1.0,<22.0.0",
+]
+
+[project.entry-points."tutor.plugin.v1"]
+brand = "tutorbrand.plugin"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["tutorbrand"]
+
+[tool.hatch.build.targets.sdist]
+include = ["/tutorbrand"]

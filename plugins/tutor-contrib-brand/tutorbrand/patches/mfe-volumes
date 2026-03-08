@@ -1,0 +1,3 @@
+{% if MFE_HOST_EXTRA_FILES %}
+- ../../{{ BRAND_OUTPUT_PATH }}:/brand-static
+{% endif %}

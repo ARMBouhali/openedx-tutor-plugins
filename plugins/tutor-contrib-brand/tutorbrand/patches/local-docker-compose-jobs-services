@@ -1,0 +1,17 @@
+# Brand builder
+brand-builder-job:
+    image: {{ BRAND_BUILDER_IMAGE }}
+    environment:
+      - BRAND_REPOSITORY={{ BRAND_REPOSITORY }}
+      - BRAND_VERSION={{ BRAND_VERSION }}
+      - BRAND_LOGO={{ BRAND_LOGO }}
+      - BRAND_LOGO_TRADEMARK={{ BRAND_LOGO_TRADEMARK }}
+      - BRAND_LOGO_WHITE={{ BRAND_LOGO_WHITE }}
+      - BRAND_FAVICON={{ BRAND_FAVICON }}
+      - PARAGON_ENABLED_THEMES={{ PARAGON_ENABLED_THEMES | join(',') }}
+    volumes:
+      - "./../../:/openedx-root"
+      - "./../../../:/workspace-root"
+      - "./../../{{ BRAND_OUTPUT_PATH }}:/brand-static"
+      - "./../../{{ BRAND_WORKDIR }}:/brand-workdir"
+      - "./../../{{ PARAGON_COMPILED_THEMES_PATH }}:/compiled-themes"

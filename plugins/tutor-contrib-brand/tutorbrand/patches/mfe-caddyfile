@@ -1,0 +1,6 @@
+{% if MFE_HOST_EXTRA_FILES %}
+handle_path /{{ BRAND_STATIC_URL_PREFIX }}* {
+    root * /brand-static
+    file_server
+}
+{% endif %}
