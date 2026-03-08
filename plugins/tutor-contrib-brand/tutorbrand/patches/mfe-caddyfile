@@ -3,4 +3,10 @@ handle_path /{{ BRAND_STATIC_URL_PREFIX }}* {
     root * /brand-static
     file_server
 }
+
+# Brand also depends on Paragon-hosted assets such as fonts.
+handle_path /static/paragon/* {
+    root * /paragon-statics
+    file_server
+}
 {% endif %}
