@@ -62,6 +62,7 @@ build_css_bundle() {
     local index_css_file="$1"
     local bundle_directory
     local bundle_name
+    local font_url_prefix
     local minified_output_file
     local overrides_file
     local working_css_file
@@ -70,11 +71,13 @@ build_css_bundle() {
     bundle_name="$(basename "$bundle_directory")"
     minified_output_file="$bundle_directory/${bundle_name}.min.css"
     working_css_file="$index_css_file"
+    font_url_prefix="../../brand/fonts"
 
     if [ "$bundle_name" = "core" ]; then
         overrides_file="$TMP_BRAND_DIR/paragon/overrides/core.css"
     else
         overrides_file="$TMP_BRAND_DIR/paragon/overrides/themes/${bundle_name}.css"
+        font_url_prefix="../../../brand/fonts"
     fi
 
     if [ -f "$overrides_file" ]; then
@@ -89,6 +92,8 @@ build_css_bundle() {
         --use postcss-minify \
         --no-map \
         --output "$minified_output_file"
+
+    sed -i "s#\\.\\./fonts/#${font_url_prefix}/#g" "$minified_output_file"
 }
 
 copy_brand_asset_if_relative() {
@@ -132,7 +137,8 @@ done
 cp -a "$TMP_PARAGON_DIR/." "$PARAGON_OUTPUT_DIR/"
 
 if [ -d "$TMP_BRAND_DIR/paragon/fonts" ]; then
-    cp -a "$TMP_BRAND_DIR/paragon/fonts" "$PARAGON_OUTPUT_DIR/fonts"
+    mkdir -p "$BRAND_STATIC_DIR/fonts"
+    cp -a "$TMP_BRAND_DIR/paragon/fonts/." "$BRAND_STATIC_DIR/fonts/"
 fi
 
 copy_brand_asset_if_relative "$BRAND_LOGO"
