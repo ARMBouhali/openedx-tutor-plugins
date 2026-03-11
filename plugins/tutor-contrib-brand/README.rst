@@ -58,3 +58,12 @@ Examples::
 
     http://apps.local.openedx.io/static/brand/logo.svg
     http://apps.local.openedx.io/static/brand/logo-white.svg
+
+Development static hosting
+==========================
+
+In Tutor ``dev`` mode, brand assets are served by the shared ``mfe`` service on port ``8002`` using the configured ``MFE_HOST``. This allows MFEs running on separate development ports to fetch logos, favicons, fonts, and other brand-managed static files from a stable host::
+
+    http://{{ MFE_HOST }}:8002/static/brand/
+
+The plugin also configures CORS headers for the brand static path so that browser font and asset requests from MFE dev origins are accepted.

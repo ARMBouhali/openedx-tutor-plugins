@@ -7,6 +7,7 @@ handle_path /{{ PARAGON_STATIC_URL_PREFIX }}* {
     }
     handle @mincss {
         root * /paragon-statics
+        header Access-Control-Allow-Origin *
         file_server
     }
 }

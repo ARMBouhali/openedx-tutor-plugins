@@ -1,6 +1,7 @@
 {% if MFE_HOST_EXTRA_FILES %}
 handle_path /{{ BRAND_STATIC_URL_PREFIX }}* {
     root * /brand-static
+    header Access-Control-Allow-Origin *
     file_server
 }
 {% endif %}

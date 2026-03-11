@@ -1,6 +1,6 @@
 {% if MFE_HOST_EXTRA_FILES %}
 {% set PROTOCOL = 'https' if ENABLE_HTTPS else 'http' %}
-{% set BRAND_BASE_URL = PROTOCOL ~ '://' ~ 'localhost' ~ ':' ~ 8002 ~ '/' ~ BRAND_STATIC_URL_PREFIX %}
+{% set BRAND_BASE_URL = PROTOCOL ~ '://' ~ MFE_HOST ~ ':' ~ 8002 ~ '/' ~ BRAND_STATIC_URL_PREFIX %}
 MFE_CONFIG["LOGO_URL"] = "{% if BRAND_LOGO.startswith('http://') or BRAND_LOGO.startswith('https://') %}{{ BRAND_LOGO }}{% else %}{{ BRAND_BASE_URL ~ BRAND_LOGO }}{% endif %}"
 MFE_CONFIG["LOGO_TRADEMARK_URL"] = "{% if BRAND_LOGO_TRADEMARK.startswith('http://') or BRAND_LOGO_TRADEMARK.startswith('https://') %}{{ BRAND_LOGO_TRADEMARK }}{% else %}{{ BRAND_BASE_URL ~ BRAND_LOGO_TRADEMARK }}{% endif %}"
 MFE_CONFIG["LOGO_WHITE_URL"] = "{% if BRAND_LOGO_WHITE.startswith('http://') or BRAND_LOGO_WHITE.startswith('https://') %}{{ BRAND_LOGO_WHITE }}{% else %}{{ BRAND_BASE_URL ~ BRAND_LOGO_WHITE }}{% endif %}"

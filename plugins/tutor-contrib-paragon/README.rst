@@ -204,6 +204,13 @@ Example URLs:
 
 Each theme listed in `PARAGON_THEMES` is automatically exposed for use in MFEs.
 
+In Tutor ``dev`` mode, the CSS is served by the shared ``mfe`` service on port ``8002`` using the configured ``MFE_HOST``. LMS development settings should therefore point MFEs at URLs such as::
+
+    http://{{ MFE_HOST }}:8002/static/paragon/core/core.min.css
+    http://{{ MFE_HOST }}:8002/static/paragon/themes/light/light.min.css
+
+The Paragon static host remains limited to serving compiled minified CSS assets.
+
 Updating Theme Configuration
 ============================
 
